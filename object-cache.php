@@ -480,7 +480,7 @@ class WP_Object_Cache
         if ($this->enabled) {
             opcache_invalidate($this->filePath($key, $group), true);
         }
-        return unlink($this->filePath($key, $group));
+        return @unlink($this->filePath($key, $group));
     }
 
 
@@ -527,7 +527,7 @@ class WP_Object_Cache
 					    if ( is_dir( $full ) ) {
 						    array_push( $directories, $full );
 					    } else {
-						    unlink( $full );
+						    @unlink( $full );
 						    if ( $this->enabled ) {
 							    opcache_invalidate( $full );
 						    }
